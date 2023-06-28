@@ -46,11 +46,6 @@ push_translations:
 	# Pushing comments to Transifex...
 	./node_modules/@edx/reactifex/bash_scripts/put_comments_v3.sh
 
-ifeq ($(OPENEDX_ATLAS_PULL),)
-# Pulls translations from Transifex.
-pull_translations:
-	tx pull -t -f --mode reviewed --languages=$(transifex_langs)
-else
 # Experimental: OEP-58 Pulls translations using atlas
 pull_translations:
 	rm -rf src/i18n/messages
@@ -63,7 +58,6 @@ pull_translations:
 	           translations/frontend-app-support-tools/src/i18n/messages:frontend-app-support-tools
 
 	$(intl_imports) frontend-component-header frontend-component-footer paragon frontend-app-support-tools
-endif
 
 # This target is used by CI.
 validate-no-uncommitted-package-lock-changes:
